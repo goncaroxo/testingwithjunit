@@ -14,14 +14,15 @@ public class DurationParser {
      */
     public static int parseDays(String durationString) {
         String[] parts = durationString.split(" ");
-        if (parts.length == 2) {
-            return unitValueCalculation(parts[1], parts[0]);
+
+        switch (parts.length) {
+            case 2:
+                return unitValueCalculation(parts[1], parts[0]);
+            case 1:
+                if (parts[0].equalsIgnoreCase("once")) return 1;
+            default:
+                return 0;
         }
-        else if (parts.length == 1)
-        {
-            if (parts[0].equalsIgnoreCase("once")) return 1;
-        }
-        return 0;
     }
 
     private static int unitValueCalculation(String unitString, String valueString) {
